@@ -37,15 +37,15 @@ export default function Hero() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-        
+
         {/* Left Column: Text & Hero CTA */}
         <div className="lg:col-span-7 space-y-6 text-center lg:text-left">
-          
+
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900/90 border border-cyan-500/30 text-cyan-300 text-xs font-bold uppercase tracking-wider backdrop-blur-md shadow-lg shadow-cyan-500/10">
             <Sparkles className="w-4 h-4 text-cyan-400 animate-pulse" />
             Next-Gen Salt-Free Hard Water Descaler
-            <span className="bg-cyan-500/20 px-2 py-0.5 rounded-md text-[10px] text-cyan-200">5-Yr Warranty</span>
+            <span className="bg-cyan-500/20 px-2 py-0.5 rounded-md text-[10px] text-cyan-200">2-Yr Warranty</span>
           </div>
 
           {/* Main Title */}
@@ -115,69 +115,6 @@ export default function Hero() {
             </div>
           </div>
         </div>
-
-        {/* Right Column: Visual Product Showcase Card */}
-        <div className="lg:col-span-5 relative">
-          <motion.div
-            style={{ y }}
-            className="relative rounded-3xl bg-gradient-to-b from-slate-900 via-slate-900/90 to-slate-950 p-6 sm:p-8 border border-cyan-500/30 shadow-2xl shadow-cyan-500/10 backdrop-blur-xl"
-          >
-            {/* Header Badge */}
-            <div className="flex justify-between items-center mb-6">
-              <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
-                In Stock • Shiprocket Partner
-              </span>
-              <span className="text-xs text-cyan-400 font-semibold tracking-wider uppercase">
-                Model: AquaShield Home
-              </span>
-            </div>
-
-            {/* Product Image Mock */}
-            <div className="relative h-64 sm:h-72 w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 flex items-center justify-center group">
-              <img
-                src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
-                alt="Voskiveriga Electromagnetic Water Descaler"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-85"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent" />
-              
-              {/* Pulse Pulse Effect */}
-              <div className="absolute bottom-4 left-4 right-4 bg-slate-950/90 backdrop-blur-md p-3 rounded-xl border border-cyan-500/40 flex items-center justify-between text-xs">
-                <div className="flex items-center gap-2">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
-                  </span>
-                  <span className="text-slate-200 font-medium">Frequency Sweeping Active (1.2k - 16kHz)</span>
-                </div>
-                <span className="text-cyan-400 font-mono font-bold">5W Low Power</span>
-              </div>
-            </div>
-
-            {/* Specs Summary */}
-            <div className="mt-6 space-y-3">
-              <h3 className="text-xl font-bold text-white">Voskiveriga AquaShield Home</h3>
-              <p className="text-xs text-slate-400">Suitable for 1/2" to 1.25" Main Water Supply Lines (CPVC, PVC, GI, Copper)</p>
-              
-              <div className="flex items-baseline gap-3 pt-2">
-                <span className="text-3xl font-extrabold text-white">₹8,999</span>
-                <span className="text-sm text-slate-500 line-through">₹14,999</span>
-                <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
-                  SAVE 40% OFF
-                </span>
-              </div>
-            </div>
-
-            {/* Quick Buy CTA */}
-            <Link
-              href="/cart"
-              className="mt-6 w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-bold bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/30 hover:scale-[1.01] transition"
-            >
-              Order Now with Razorpay / COD
-            </Link>
-          </motion.div>
-        </div>
-
       </div>
     </section>
   );

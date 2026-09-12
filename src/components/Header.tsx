@@ -101,9 +101,9 @@ export default function Header() {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative w-11 h-11 rounded-2xl bg-gradient-to-br from-cyan-500 via-blue-600 to-indigo-600 p-0.5 shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform duration-300">
-              <div className="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
-                <Droplet className="w-6 h-6 text-cyan-400 fill-cyan-400/20 group-hover:rotate-12 transition-transform duration-300" />
+            <div className="relative w-15 h-11 rounded-2xl  p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
+              <div className="w-full h-full  rounded-[14px] flex items-center justify-center overflow-hidden">
+                <img src="/images/logo.jpeg" alt="Voskiveriga Logo" className="w-full h-full object-cover" />
               </div>
             </div>
             <div className="flex flex-col">
@@ -123,8 +123,8 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${isActive(item.href)
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/20 font-semibold'
-                    : 'text-slate-300 hover:text-cyan-400 hover:bg-slate-800/60'
+                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/20 font-semibold'
+                  : 'text-slate-300 hover:text-cyan-400 hover:bg-slate-800/60'
                   }`}
               >
                 {item.label}
@@ -243,8 +243,8 @@ export default function Header() {
               key={item.href}
               href={item.href}
               className={`block px-4 py-3 rounded-xl text-base font-medium transition ${isActive(item.href)
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white'
-                  : 'text-slate-300 hover:bg-slate-900'
+                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white'
+                : 'text-slate-300 hover:bg-slate-900'
                 }`}
             >
               {item.label}

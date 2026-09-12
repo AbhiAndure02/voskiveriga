@@ -171,7 +171,7 @@ export default function OrderDetailsPage({ params }: { params: Promise<{ id: str
               {order.items.map((item: any, idx: number) => (
                 <div key={idx} className="flex items-center justify-between bg-slate-950 p-4 rounded-2xl border border-slate-800 text-xs">
                   <div className="flex items-center gap-3">
-                    {item.image && <img src={item.image} alt={item.name} className="w-12 h-12 rounded-lg object-cover" />}
+                    <img src={item.image || '/images/logo.jpeg'} alt={item.name} className="w-12 h-12 rounded-lg object-cover" />
                     <div>
                       <h4 className="font-bold text-white">{item.name}</h4>
                       <span className="text-slate-500">SKU: {item.sku} &bull; Qty: {item.quantity}</span>

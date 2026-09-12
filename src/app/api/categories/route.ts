@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
       where: { isActive: true },
       orderBy: { name: 'asc' },
     });
-    return successResponse(categories.map((c) => ({ ...c, _id: c.id })), 'Categories fetched successfully');
+    return successResponse(categories.map((c: any) => ({ ...c, _id: c.id })), 'Categories fetched successfully');
   } catch (error: any) {
     console.error('Error fetching categories:', error);
     return errorResponse(error.message || 'Failed to fetch categories', 'CATEGORY_FETCH_ERROR', 500);

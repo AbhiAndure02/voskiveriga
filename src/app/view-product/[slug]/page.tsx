@@ -61,18 +61,11 @@ export default async function ViewProductPage({ params }: PageProps) {
             {/* Product Images Section */}
             <div className="space-y-4">
               <div className="aspect-square rounded-xl bg-gray-50 overflow-hidden flex items-center justify-center p-4 border border-gray-200">
-                {product.images?.length > 0 ? (
-                  <img
-                    src={product.images[0]}
-                    alt={product.name}
-                    className="w-full h-full object-contain max-h-[500px]"
-                  />
-                ) : (
-                  <div className="text-gray-400 text-center">
-                    <div className="text-4xl mb-2">📷</div>
-                    <p>No image available</p>
-                  </div>
-                )}
+                <img
+                  src={product.images?.[0] || '/images/logo.jpeg'}
+                  alt={product.name}
+                  className="w-full h-full object-contain max-h-[500px]"
+                />
               </div>
               
               {/* Thumbnail Gallery */}

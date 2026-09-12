@@ -553,7 +553,7 @@ export default function GetProducts() {
                   {/* Product Image */}
                   <div className="relative h-48 bg-gray-100 overflow-hidden">
                     <img
-                      src={product.images[0] || `https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=400&h=300&fit=crop`}
+                      src={product.images[0] || '/images/logo.jpeg'}
                       alt={product.name}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
@@ -721,7 +721,7 @@ export default function GetProducts() {
                           <div className="flex items-center gap-3">
                             <div className="w-12 h-12 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0">
                               <img
-                                src={product.images[0] || `https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=100&h=100&fit=crop`}
+                                src={product.images[0] || '/images/logo.jpeg'}
                                 alt={product.name}
                                 className="w-full h-full object-cover"
                               />

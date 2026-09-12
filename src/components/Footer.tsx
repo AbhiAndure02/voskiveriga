@@ -72,8 +72,8 @@ export default function Footer() {
         <div className="md:col-span-2 space-y-4">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 p-0.5 shadow-lg shadow-cyan-500/20">
-              <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-                <Droplet className="w-5 h-5 text-cyan-400 fill-cyan-400/20" />
+              <div className="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center overflow-hidden">
+                <img src="/images/logo.jpeg" alt="Voskiveriga Logo" className="w-full h-full object-cover" />
               </div>
             </div>
             <span className="text-xl font-bold tracking-tight text-white">VOSKIVERIGA</span>

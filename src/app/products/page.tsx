@@ -190,7 +190,7 @@ export default function ProductsPage() {
               >
                 <div className="relative h-64 w-full bg-slate-950 overflow-hidden">
                   <img
-                    src={product.images?.[0] || '/next.svg'}
+                    src={product.images?.[0] || '/images/logo.jpeg'}
                     alt={product.name}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

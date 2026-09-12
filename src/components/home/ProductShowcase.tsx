@@ -155,13 +155,20 @@ export default function ProductShowcase() {
                 key={product.id}
                 className="bg-slate-900/70 border border-slate-800 rounded-3xl overflow-hidden hover:border-cyan-500/40 transition-all duration-300 flex flex-col group hover:shadow-2xl hover:shadow-cyan-500/10"
               >
-                <div className="relative h-64 w-full bg-slate-950 overflow-hidden">
-                  <img
-                    src={product.images?.[0] || '/next.svg'}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent" />
+                <div className="relative h-64 w-full bg-slate-950 overflow-hidden flex items-center justify-center">
+                  {product.images?.[0] ? (
+                    <img
+                      src={product.images[0]}
+                      alt={product.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center justify-center text-slate-600">
+                      <ShoppingBag className="w-12 h-12 mb-2 stroke-[1.5]" />
+                      <span className="text-xs font-medium">Product Photo</span>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent pointer-events-none" />
 
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
                     {product.isFeatured && (

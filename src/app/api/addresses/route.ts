@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
       where: { userId },
       orderBy: [{ isDefault: 'desc' }, { createdAt: 'desc' }],
     });
-    return successResponse(addresses.map((a) => ({ ...a, _id: a.id })), 'Addresses fetched successfully');
+    return successResponse(addresses.map((a: any) => ({ ...a, _id: a.id })), 'Addresses fetched successfully');
   } catch (error: any) {
     return errorResponse(error.message || 'Failed to fetch addresses', 'ADDRESS_FETCH_ERROR', 500);
   }

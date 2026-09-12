@@ -331,7 +331,7 @@ export default function CartPage() {
                   {cart.map((item) => (
                     <div key={item.id} className="py-4 flex gap-4 items-center">
                       <img
-                        src={item.image}
+                        src={item.image || '/images/logo.jpeg'}
                         alt={item.name}
                         className="w-20 h-20 rounded-2xl object-cover bg-slate-950 border border-slate-800 shrink-0"
                       />
