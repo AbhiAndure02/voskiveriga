@@ -28,6 +28,11 @@ interface Product {
 
 interface CartItem {
   id: string;
+  slug?: string;
+  name?: string;
+  price?: number;
+  originalPrice?: number;
+  image?: string;
   quantity?: number;
 }
 
