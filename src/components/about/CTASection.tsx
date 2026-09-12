@@ -4,7 +4,7 @@ import { ArrowRight, Zap } from 'lucide-react';
 const CTASection = () => {
   const badges = [
     { value: "Made for India", label: "Local Expertise" },
-    { value: "5-Year", label: "Product Warranty" },
+    { value: "2-Year", label: "Product Warranty" },
     { value: "Free", label: "Installation Support" },
     { value: "30-Day", label: "Return Policy" }
   ];

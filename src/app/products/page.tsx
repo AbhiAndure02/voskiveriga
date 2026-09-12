@@ -26,7 +26,16 @@ interface Product {
   specifications?: { key: string; value: string }[];
 }
 
+interface CartItem {
+  id: string;
+  quantity?: number;
+}
+
 function specValue(product: Product, key: string, fallback = 'Available on request') {
+  if (key.toLowerCase().includes('warranty')) {
+    return '2-Year Warranty';
+  }
+
   return product.specifications?.find((spec) => spec.key.toLowerCase().includes(key))?.value || fallback;
 }
 
@@ -54,9 +63,9 @@ export default function ProductsPage() {
           setProducts(json.data?.products || []);
           setError(null);
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         if (!cancelled) {
-          setError(err.message || 'Failed to load products');
+          setError(err instanceof Error ? err.message : 'Failed to load products');
         }
       } finally {
         if (!cancelled) {
@@ -88,8 +97,8 @@ export default function ProductsPage() {
 
   const handleAddToCart = (product: Product) => {
     try {
-      const existingCart = JSON.parse(localStorage.getItem('voskiveriga_cart') || '[]');
-      const existingIndex = existingCart.findIndex((item: any) => item.id === product.id);
+      const existingCart = JSON.parse(localStorage.getItem('voskiveriga_cart') || '[]') as CartItem[];
+      const existingIndex = existingCart.findIndex((item) => item.id === product.id);
 
       if (existingIndex > -1) {
         existingCart[existingIndex].quantity = (existingCart[existingIndex].quantity || 1) + 1;

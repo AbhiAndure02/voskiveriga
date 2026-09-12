@@ -130,7 +130,7 @@ function TrackOrderContent() {
             <div className="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                <span>Protected by Voskiveriga 5-Year Replacement Guarantee</span>
+                <span>Protected by Voskiveriga 2-Year Replacement Guarantee</span>
               </div>
               <a href="/contact" className="text-cyan-400 font-semibold hover:underline">
                 Need Help? Contact Support →

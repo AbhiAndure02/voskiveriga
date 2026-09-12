@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="mx-auto max-w-4xl">
         <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-slate-900 px-4 py-2 text-xs font-bold uppercase tracking-wider text-cyan-300">
           <Sparkles className="h-4 w-4 text-cyan-400" />
-          Salt-free water descaling
+          Salt-free water technology
         </div>
 
         <h1 className="mt-6 text-4xl font-extrabold leading-tight tracking-tight sm:text-6xl lg:text-7xl">

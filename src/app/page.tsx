@@ -56,7 +56,7 @@ export default function Home() {
 
       <section className="mx-auto max-w-5xl px-4 py-16 text-center sm:px-6 lg:px-8">
         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-          Need the right descaler for your site?
+          Need the right solution for your site?
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-slate-400">
           Share your pipe size, water usage, and application. We will guide you

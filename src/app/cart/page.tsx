@@ -296,7 +296,7 @@ export default function CartPage() {
             Shopping Cart & Checkout
           </h1>
           <p className="text-slate-400 text-sm mt-1">
-            Free Shiprocket Express Delivery • 5-Year Guarantee • 100% Salt-Free Descaler
+            Free Shiprocket Express Delivery • 2-Year Guarantee • 100% Salt-Free Water Tech
           </p>
         </div>
 
@@ -304,7 +304,7 @@ export default function CartPage() {
           <div className="bg-slate-900 border border-slate-800 rounded-3xl p-12 text-center max-w-md mx-auto space-y-4">
             <ShoppingBag className="w-16 h-16 text-slate-600 mx-auto" />
             <h2 className="text-xl font-bold text-white">Your Cart is Empty</h2>
-            <p className="text-slate-400 text-xs">Explore our range of electromagnetic water descalers to protect your home.</p>
+            <p className="text-slate-400 text-xs">Explore our available water technology solutions to protect your home.</p>
             <Link
               href="/products"
               className="inline-block px-6 py-3 rounded-xl font-bold bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25"
@@ -609,7 +609,7 @@ export default function CartPage() {
                   </div>
 
                   <div className="flex justify-between text-slate-300">
-                    <span>5-Year Replacement Warranty</span>
+                    <span>2-Year Replacement Warranty</span>
                     <span className="font-semibold text-cyan-400">INCLUDED</span>
                   </div>
 

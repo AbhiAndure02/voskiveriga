@@ -3,7 +3,6 @@ import StatsSection from '../../components/about/StatsSection';
 import StorySection from '../../components/about/StorySection';
 import ValuesSection from '../../components/about/ValuesSection';
 import CTASection from '../../components/about/CTASection';
-import ProductsSection from '../../components/about/ProductSection';
 
 export default function About() {
   return (
@@ -12,7 +11,6 @@ export default function About() {
       {/* <StatsSection /> */}
       <StorySection />
       <ValuesSection />
-      <ProductsSection />
       <CTASection />
     </main>
   );

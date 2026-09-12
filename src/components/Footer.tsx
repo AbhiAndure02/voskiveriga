@@ -2,10 +2,8 @@
 
 import Link from 'next/link';
 import { 
-  Droplet, 
   Truck, 
   Zap, 
-  RotateCcw, 
   Mail, 
   Phone, 
   MapPin, 
@@ -49,7 +47,7 @@ export default function Footer() {
               <Award className="w-6 h-6" />
             </div>
             <div>
-              <h5 className="text-white font-semibold text-sm">5-Year Guarantee</h5>
+              <h5 className="text-white font-semibold text-sm">2-Year Guarantee</h5>
               <p className="text-xs text-slate-500">Full replacement warranty & support</p>
             </div>
           </div>
@@ -80,7 +78,7 @@ export default function Footer() {
           </div>
 
           <p className="text-sm leading-relaxed text-slate-400 max-w-md">
-            Voskiveriga is India's leading electromagnetic water descaler technology brand. We protect homes, commercial establishments, and industries from stubborn hard water limescale without salt, maintenance, or water wastage.
+            Voskiveriga is India&apos;s leading electromagnetic water technology brand. We protect homes, commercial establishments, and industries from stubborn hard water limescale without salt, maintenance, or water wastage.
           </p>
 
           <div className="pt-2 flex items-center gap-3 text-xs text-slate-400">
@@ -93,21 +91,21 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Products */}
+        {/* Support */}
         <div className="space-y-3">
-          <h4 className="text-white font-semibold text-sm tracking-wider uppercase">Products</h4>
+          <h4 className="text-white font-semibold text-sm tracking-wider uppercase">Support</h4>
           <ul className="space-y-2 text-sm">
             <li>
-              <Link href="/products" className="hover:text-cyan-400 transition">Voskiveriga AquaShield (Home 1")</Link>
+              <Link href="/contact" className="hover:text-cyan-400 transition">Product Guidance</Link>
             </li>
             <li>
-              <Link href="/products" className="hover:text-cyan-400 transition">HydroPulse Pro (Villa 1.5")</Link>
+              <Link href="/contact" className="hover:text-cyan-400 transition">Installation Help</Link>
             </li>
             <li>
-              <Link href="/products" className="hover:text-cyan-400 transition">TitanScale (Industrial 2-4")</Link>
+              <Link href="/track-order" className="hover:text-cyan-400 transition">Order Tracking</Link>
             </li>
             <li>
-              <Link href="/products" className="hover:text-cyan-400 transition">Copper Signal Coils & Spare Parts</Link>
+              <Link href="/contact" className="hover:text-cyan-400 transition">2-Year Warranty Support</Link>
             </li>
           </ul>
         </div>

@@ -1,42 +1,45 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import {
   ShoppingBag,
   MapPin,
-  Search,
   Menu,
   X,
-  Droplet,
   ShieldCheck,
   Truck,
   ChevronDown,
-  Sparkles
-} from 'lucide-react';
-import { checkPincodeServiceability } from '@/lib/shiprocket';
+} from "lucide-react";
+import {
+  ShiprocketServiceabilityResponse,
+  checkPincodeServiceability,
+} from "@/lib/shiprocket";
 
 interface NavItem {
   label: string;
   href: string;
 }
 
+interface CartItem {
+  quantity?: number;
+}
+
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Descalers', href: '/products' },
-  { label: 'Track Order', href: '/track-order' },
-  { label: 'About Tech', href: '/about' },
-  { label: 'Contact', href: '/contact' },
+  { label: "Home", href: "/" },
+  { label: "Track Order", href: "/track-order" },
+  { label: "About Tech", href: "/about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
   const pathname = usePathname();
-  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPincodeOpen, setIsPincodeOpen] = useState(false);
-  const [pincodeInput, setPincodeInput] = useState('');
-  const [pincodeResult, setPincodeResult] = useState<any>(null);
+  const [pincodeInput, setPincodeInput] = useState("");
+  const [pincodeResult, setPincodeResult] =
+    useState<ShiprocketServiceabilityResponse | null>(null);
   const [isCheckingPincode, setIsCheckingPincode] = useState(false);
   const [cartCount, setCartCount] = useState(0);
 
@@ -47,25 +50,30 @@ export default function Header() {
     // Update cart badge from localStorage
     const updateCartCount = () => {
       try {
-        const cartData = JSON.parse(localStorage.getItem('voskiveriga_cart') || '[]');
-        const count = cartData.reduce((acc: number, item: any) => acc + (item.quantity || 1), 0);
+        const cartData = JSON.parse(
+          localStorage.getItem("voskiveriga_cart") || "[]",
+        ) as CartItem[];
+        const count = cartData.reduce(
+          (acc: number, item) => acc + (item.quantity || 1),
+          0,
+        );
         setCartCount(count);
-      } catch (e) {
+      } catch {
         setCartCount(0);
       }
     };
 
     updateCartCount();
-    window.addEventListener('storage', updateCartCount);
-    window.addEventListener('cart_updated', updateCartCount);
+    window.addEventListener("storage", updateCartCount);
+    window.addEventListener("cart_updated", updateCartCount);
     return () => {
-      window.removeEventListener('storage', updateCartCount);
-      window.removeEventListener('cart_updated', updateCartCount);
+      window.removeEventListener("storage", updateCartCount);
+      window.removeEventListener("cart_updated", updateCartCount);
     };
   }, [pathname]);
 
   const isActive = (href: string) => {
-    if (href === '/') return pathname === '/';
+    if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
 
@@ -77,10 +85,15 @@ export default function Header() {
     try {
       const result = await checkPincodeServiceability(pincodeInput);
       setPincodeResult(result);
-    } catch (err) {
+    } catch {
       setPincodeResult({
         success: false,
-        message: 'Could not check pincode serviceability.',
+        delivery_postcode: pincodeInput.trim(),
+        serviceable: false,
+        couriers: [],
+        estimated_days: "N/A",
+        min_shipping_rate: 0,
+        message: "Could not check pincode serviceability.",
       });
     } finally {
       setIsCheckingPincode(false);
@@ -90,20 +103,18 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-slate-950/85 backdrop-blur-xl border-b border-cyan-500/20 text-slate-100 shadow-xl transition-all">
       {/* Top Banner Notice */}
-      <div className="bg-gradient-to-r from-cyan-600 via-blue-700 to-indigo-800 text-white text-xs py-1.5 px-4 text-center font-medium tracking-wide flex items-center justify-center gap-2">
-        <Sparkles className="w-3.5 h-3.5 text-yellow-300 animate-pulse" />
-        <span>Voskiveriga Breakthrough Hard Water Treatment: <strong>100% Salt-Free & 5-Year Guarantee</strong></span>
-        <span className="hidden md:inline-block text-cyan-200">| Free Shiprocket Express Delivery Across India</span>
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
-
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative w-15 h-11 rounded-2xl  p-0.5 shadow-lg group-hover:scale-105 transition-transform duration-300">
               <div className="w-full h-full  rounded-[14px] flex items-center justify-center overflow-hidden">
-                <img src="/images/logo.jpeg" alt="Voskiveriga Logo" className="w-full h-full object-cover" />
+                <img
+                  src="/images/logo.jpeg"
+                  alt="Voskiveriga Logo"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
             <div className="flex flex-col">
@@ -111,7 +122,7 @@ export default function Header() {
                 VOSKIVERIGA
               </span>
               <span className="text-[10px] tracking-widest uppercase font-semibold text-cyan-400/90 -mt-1">
-                Electromagnetic Descaler
+                Water Tech
               </span>
             </div>
           </Link>
@@ -122,10 +133,11 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${isActive(item.href)
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/20 font-semibold'
-                  : 'text-slate-300 hover:text-cyan-400 hover:bg-slate-800/60'
-                  }`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                  isActive(item.href)
+                    ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-md shadow-cyan-500/20 font-semibold"
+                    : "text-slate-300 hover:text-cyan-400 hover:bg-slate-800/60"
+                }`}
               >
                 {item.label}
               </Link>
@@ -141,7 +153,11 @@ export default function Header() {
               title="Check Shiprocket Delivery Pincode"
             >
               <MapPin className="w-3.5 h-3.5 text-cyan-400" />
-              <span>{pincodeResult?.delivery_postcode ? `PIN: ${pincodeResult.delivery_postcode}` : 'Check Pincode'}</span>
+              <span>
+                {pincodeResult?.delivery_postcode
+                  ? `PIN: ${pincodeResult.delivery_postcode}`
+                  : "Check Pincode"}
+              </span>
               <ChevronDown className="w-3 h-3 text-slate-400" />
             </button>
 
@@ -159,12 +175,12 @@ export default function Header() {
               )}
             </Link>
 
-            {/* Buy Now Quick CTA */}
+            {/* Quick CTA */}
             <Link
-              href="/cart"
+              href="/contact"
               className="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-cyan-500 via-blue-600 to-indigo-600 text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] transition-all"
             >
-              Buy Descaler
+              Contact Us
             </Link>
 
             {/* Mobile Menu Toggle */}
@@ -172,10 +188,13 @@ export default function Header() {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="lg:hidden p-2.5 rounded-xl bg-slate-900 border border-slate-800 text-slate-200 hover:text-cyan-400"
             >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
-
         </div>
       </div>
 
@@ -187,7 +206,10 @@ export default function Header() {
               <Truck className="w-4 h-4 text-cyan-400" />
               Shiprocket Delivery Check
             </h4>
-            <button onClick={() => setIsPincodeOpen(false)} className="text-slate-400 hover:text-white">
+            <button
+              onClick={() => setIsPincodeOpen(false)}
+              className="text-slate-400 hover:text-white"
+            >
               <X className="w-4 h-4" />
             </button>
           </div>
@@ -198,7 +220,9 @@ export default function Header() {
                 type="text"
                 maxLength={6}
                 value={pincodeInput}
-                onChange={(e) => setPincodeInput(e.target.value.replace(/\D/g, ''))}
+                onChange={(e) =>
+                  setPincodeInput(e.target.value.replace(/\D/g, ""))
+                }
                 placeholder="Enter 6-digit Pincode (e.g. 560001)"
                 className="w-full bg-slate-950 border border-slate-800 rounded-xl py-2 px-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400"
               />
@@ -207,7 +231,7 @@ export default function Header() {
                 disabled={isCheckingPincode}
                 className="absolute right-1 top-1 bottom-1 px-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs font-bold rounded-lg transition"
               >
-                {isCheckingPincode ? 'Checking...' : 'Verify'}
+                {isCheckingPincode ? "Checking..." : "Verify"}
               </button>
             </div>
           </form>
@@ -221,14 +245,17 @@ export default function Header() {
                     Delivery Available!
                   </div>
                   <div className="text-slate-300">
-                    Est. Delivery: <strong>{pincodeResult.estimated_days}</strong>
+                    Est. Delivery:{" "}
+                    <strong>{pincodeResult.estimated_days}</strong>
                   </div>
                   <div className="text-cyan-400 font-medium">
                     Shipping Charge: FREE Express (Shiprocket Partner)
                   </div>
                 </>
               ) : (
-                <div className="text-rose-400">{pincodeResult.message || 'Pincode not serviceable.'}</div>
+                <div className="text-rose-400">
+                  {pincodeResult.message || "Pincode not serviceable."}
+                </div>
               )}
             </div>
           )}
@@ -242,10 +269,11 @@ export default function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className={`block px-4 py-3 rounded-xl text-base font-medium transition ${isActive(item.href)
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white'
-                : 'text-slate-300 hover:bg-slate-900'
-                }`}
+              className={`block px-4 py-3 rounded-xl text-base font-medium transition ${
+                isActive(item.href)
+                  ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white"
+                  : "text-slate-300 hover:bg-slate-900"
+              }`}
             >
               {item.label}
             </Link>
